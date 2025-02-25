@@ -1,8 +1,10 @@
+"use client"; // 👈 Required for using useState
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react'; // ✅ This will now work in a Client Component
 import './globals.css';
-import { useState } from 'react';
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -57,4 +59,3 @@ export default function Home() {
     </div>
   );
 }
-
