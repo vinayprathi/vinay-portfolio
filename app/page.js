@@ -1,41 +1,60 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
+import './globals.css';
+import { useState } from 'react';
 
 export default function Home() {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       <Head>
-        <title>Vinaybhaskar Prathi - Data Scientist Portfolio</title>
+        <title>Vinaybhaskar Prathi - Portfolio</title>
       </Head>
 
-      {/* Header Section */}
-      <header className="bg-white shadow">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Vinaybhaskar Prathi</h1>
-          <div className="space-x-4">
-            <Link href="/about">About</Link>
-            <Link href="/resume">Resume</Link>
-            <Link href="/projects">Projects</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
-        </nav>
-      </header>
+      {/* Navigation Bar */}
+      <nav className="absolute top-0 w-full flex justify-between p-5 shadow-lg bg-gray-800 text-white">
+        <h1 className="text-2xl font-bold text-blue-400">Vinaybhaskar Prathi</h1>
+        <div className="space-x-4">
+          <Link className="hover:text-blue-400" href="/about">About</Link>
+          <Link className="hover:text-blue-400" href="/resume">Resume</Link>
+          <Link className="hover:text-blue-400" href="/projects">Projects</Link>
+          <Link className="hover:text-blue-400" href="/contact">Contact</Link>
+          <Link className="hover:text-blue-400" href="/blog">Blog</Link>
+        </div>
+        <button 
+          onClick={() => setDarkMode(!darkMode)}
+          className="bg-blue-500 px-4 py-2 rounded text-white"
+        >
+          {darkMode ? '🌞 Light Mode' : '🌙 Dark Mode'}
+        </button>
+      </nav>
 
       {/* Hero Section */}
-      <main className="mt-10 mx-auto max-w-4xl text-center">
-        <h2 className="text-3xl font-extrabold">Data Scientist | ML Engineer | Researcher</h2>
-        <p className="mt-4 text-lg text-gray-600">
+      <main className="flex flex-col items-center justify-center text-center mt-16 p-6">
+        <Image 
+          src="/profile.jpg" 
+          alt="Vinaybhaskar Prathi" 
+          width={150} 
+          height={150} 
+          className="rounded-full border-4 border-blue-400 shadow-lg"
+        />
+        <h2 className="text-4xl font-bold text-blue-400 mt-4">Data Scientist | ML Engineer | Researcher</h2>
+        <p className="mt-4 text-lg text-gray-300 max-w-2xl">
           Passionate about AI-driven solutions, predictive modeling, and NLP innovations.
+          I specialize in building machine learning models and optimizing AI workflows.
         </p>
-        <Link href="/contact" className="mt-6 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg">
+        <Link href="/contact" className="mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-transform transform hover:scale-110">
           Get In Touch
         </Link>
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 text-center text-gray-500">
+      <footer className="absolute bottom-5 text-gray-500 text-center w-full">
         <p>&copy; 2025 Vinaybhaskar Prathi. All rights reserved.</p>
       </footer>
     </div>
   );
 }
+
